@@ -4,30 +4,26 @@ import { IDialop } from "@/store/modules/Dialop";
 
 @Component
 export default class Index extends Vue {
+	private name = "";
+
 	private openDialop() {
 		const dialop: IDialop = {
 			visible: true,
-			titleSlot: () => {
-				return [
-					<span>请输入姓名</span>
-				]
-			},
-			contentSlot: () => {
-				return [
-					<el-input v-model="input" placeholder="请输入姓名"></el-input>
-				];
-			},
-			footerSlot: () => {
-				return [
-					<el-button type="primary">确定</el-button>,
+			titleNode: (<span>请输入姓名</span>),
+			contentNode: (<el-input v-model={ this.name } placeholder="请输入姓名"></el-input>),
+			footerNode: (
+				<span>
+					<el-button type="primary" onClick={ this.confirm }>确定</el-button>,
 					<el-button>取消</el-button>
-				];
-			}
+				</span>
+			)
 		};
 		this.$store.dispatch("Dialop/setDialop", dialop);
 	}
 
-	private confirm
+	private confirm() {
+		alert(this.name);
+	}
 
 	render(){
 		return (

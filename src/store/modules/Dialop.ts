@@ -1,31 +1,31 @@
 import { VuexModule, Module, Mutation, Action, getModule } from "vuex-module-decorators";
 import store from "@/store";
-import { NormalizedScopedSlot } from 'vue/types/vnode';
+import { VNode } from 'vue/types/umd';
 
 export interface IDialop {
   visible: boolean;
-  titleSlot?: NormalizedScopedSlot | undefined;
-  contentSlot?: NormalizedScopedSlot | undefined;
-  footerSlot?: NormalizedScopedSlot | undefined;
+  titleNode?: VNode;
+  contentNode?: VNode;
+  footerNode?: VNode;
 }
 
 @Module({ dynamic: true, store, name: "Dialop", namespaced: true })
 class Dialop extends VuexModule implements IDialop {
   public visible: boolean = false;
 
-  public titleSlot?: NormalizedScopedSlot | undefined;
+  public titleNode?: VNode;
 
-  public contentSlot?: NormalizedScopedSlot | undefined;
+  public contentNode?: VNode;
 
-  public footerSlot?: NormalizedScopedSlot | undefined;
+  public footerNode?: VNode;
 
   @Mutation
-  private SET_DIALOP({ visible, titleSlot, contentSlot, footerSlot }: IDialop) {
+  private SET_DIALOP({ visible, titleNode, contentNode, footerNode }: IDialop) {
     debugger;
     this.visible = visible;
-    this.titleSlot = titleSlot;
-    this.contentSlot = contentSlot;
-    this.footerSlot = footerSlot;
+    this.titleNode = titleNode;
+    this.contentNode = contentNode;
+    this.footerNode = footerNode;
   }
 
   @Action

@@ -1,9 +1,10 @@
 import { Vue, Component, Prop } from "vue-property-decorator"
+import { DialopModule } from "@/store/modules/Dialop";
 
 @Component
 export default class BasicDialop extends Vue {
   private onClose() {
-    this.$store.dispatch("setDialop", {
+    this.$store.dispatch("Dialop/setDialop", {
 			visible: false,
 			titleNode: (<span>标题</span>),
 			contentNode: (<span>内容</span>),
@@ -14,7 +15,7 @@ export default class BasicDialop extends Vue {
   protected render() {
     return (
       <el-dialog
-        visible={ this.$store.state.Dialop.visible }
+        visible={ DialopModule.visible }
         width="30%"
         before-close={ this.onClose }
       >
